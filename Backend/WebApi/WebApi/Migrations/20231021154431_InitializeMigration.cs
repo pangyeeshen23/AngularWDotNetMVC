@@ -5,7 +5,7 @@
 namespace WebApi.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class InitializeMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,7 +25,7 @@ namespace WebApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Jobs",
+                name: "Departments",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -35,9 +35,9 @@ namespace WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Jobs", x => x.Id);
+                    table.PrimaryKey("PK_Departments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Jobs_Employees_EmpId",
+                        name: "FK_Departments_Employees_EmpId",
                         column: x => x.EmpId,
                         principalTable: "Employees",
                         principalColumn: "Id",
@@ -45,8 +45,8 @@ namespace WebApi.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Jobs_EmpId",
-                table: "Jobs",
+                name: "IX_Departments_EmpId",
+                table: "Departments",
                 column: "EmpId",
                 unique: true);
         }
@@ -55,7 +55,7 @@ namespace WebApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Jobs");
+                name: "Departments");
 
             migrationBuilder.DropTable(
                 name: "Employees");

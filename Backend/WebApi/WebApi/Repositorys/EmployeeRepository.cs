@@ -15,7 +15,7 @@ namespace WebApi.Repositorys
 
         public async Task<List<Employee>> GetEmployeeList()
         {
-            List<Employee> employeeList = await _context.Employees.Include(e => e.Job).ToListAsync();
+            List<Employee> employeeList = await _context.Employees.Include(e => e.Department).ToListAsync();
             return employeeList;
         }
 

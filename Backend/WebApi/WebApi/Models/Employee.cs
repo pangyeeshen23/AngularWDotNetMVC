@@ -14,7 +14,7 @@ namespace WebApi.Models
         [Column(TypeName = "nvarchar(3)")]
         public int Age { get; set; }
 
-        public Job? Job { get; set;}
+        public Departments? Department { get; set;}
 
     }
 }

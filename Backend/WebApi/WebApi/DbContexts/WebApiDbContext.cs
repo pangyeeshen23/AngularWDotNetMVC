@@ -11,14 +11,14 @@ namespace WebApi.DbContexts
         }
 
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<Job> Jobs { get; set; }
+        public DbSet<Departments> Departments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Employee>()
-                .HasOne(e => e.Job)
+                .HasOne(e => e.Department)
                 .WithOne(e => e.Employee)
-                .HasForeignKey<Job>(e => e.EmpId)
+                .HasForeignKey<Departments>(e => e.EmpId)
                 .IsRequired();
         }
     }

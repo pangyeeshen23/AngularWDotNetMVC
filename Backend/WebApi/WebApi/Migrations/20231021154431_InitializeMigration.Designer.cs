@@ -11,8 +11,8 @@ using WebApi.DbContexts;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(WebApiDbContext))]
-    [Migration("20231020164247_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20231021154431_InitializeMigration")]
+    partial class InitializeMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,28 @@ namespace WebApi.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("WebApi.Models.Departments", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Designation")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<long>("EmpId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmpId")
+                        .IsUnique();
+
+                    b.ToTable("Departments");
+                });
 
             modelBuilder.Entity("WebApi.Models.Employee", b =>
                 {
@@ -44,33 +66,11 @@ namespace WebApi.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("WebApi.Models.Job", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Designation")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<long>("EmpId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmpId")
-                        .IsUnique();
-
-                    b.ToTable("Jobs");
-                });
-
-            modelBuilder.Entity("WebApi.Models.Job", b =>
+            modelBuilder.Entity("WebApi.Models.Departments", b =>
                 {
                     b.HasOne("WebApi.Models.Employee", "Employee")
-                        .WithOne("Job")
-                        .HasForeignKey("WebApi.Models.Job", "EmpId")
+                        .WithOne("Department")
+                        .HasForeignKey("WebApi.Models.Departments", "EmpId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -79,7 +79,7 @@ namespace WebApi.Migrations
 
             modelBuilder.Entity("WebApi.Models.Employee", b =>
                 {
-                    b.Navigation("Job");
+                    b.Navigation("Department");
                 });
 #pragma warning restore 612, 618
         }

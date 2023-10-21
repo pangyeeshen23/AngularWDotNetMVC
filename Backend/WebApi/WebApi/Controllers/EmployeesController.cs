@@ -33,7 +33,7 @@ namespace WebApi.Controllers
             {
                 EmpID = e.Id,
                 EmployeeName = e.Name,
-                Designation = e.Job?.Designation,
+                Designation = e.Department?.Designation,
                 Age = e.Age
             }).ToList();
 

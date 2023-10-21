@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApi.Models
 {
-    public class Job
+    public class Departments
     {
         [Key]
         public long Id { get; set; }
