@@ -1,0 +1,16 @@
+<table *ngIf="visibility"> 
+    <thead>
+        <tr>
+            <th>Employee Name</th>
+            <th>Designation</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let emp of data" >
+            <td> {{ emp.employeeName }}</td>
+            <td> {{ emp.designation}}</td>
+            <td> {{ emp.age }}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,9 @@
+<div>
+    <div class="margin">
+        <app-button btnTitle="Browse Veggies And Fruits Content" bgColor="green" (btnEvent)="btnClick('veggies')"></app-button>
+    </div>
+    <div class="margin">
+        <app-button btnTitle="Browse Employee List" bgColor="blue" (btnEvent)="btnClick('emp')"></app-button>
+        <app-emptable [data]="employeeData" [visibility]="showEmployeeTable" ></app-emptable>
+    </div>
+</div>
